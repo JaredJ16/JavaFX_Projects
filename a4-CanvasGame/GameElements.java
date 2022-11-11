@@ -36,86 +36,61 @@ public class GameElements {
 		point = pointIn;
 		
 		for(int i = 0; i < NUM_ENEMIES; i++) {
-			
 			enemies[i] = new Block(2, 2, 40, new Image("/Enemy.png"));
-			
 		}
 		
 		score = 0;
 		highScore = 0;
 		scoreText = new Text("Score: 0");
 		highScoreText = new Text("High Score: 0");
-		
 	}
 	
 	//Getters/////////////////////////////////////////////////////////////
 	
 	public Player getPlayer() {
-		
 		return player;
-		
 	}
 	
 	public Point getPoint() {
-		
 		return point;
-		
 	}
 	
 	public int getScore() {
-		
 		return score;
-		
 	}
 	
 	public int getHighScore() {
-		
 		return highScore;
-		
 	}
 	
 	public Text getScoreText() {
-		
 		return scoreText;
-		
 	}
 	
 	public Text getHighScoreText() {
-		
 		return highScoreText;
-		
 	}
 	
 	public Block[] getEnemies() {
-		
 		return enemies;
-		
 	}
 	
 	//Setters/////////////////////////////////////////////////////////////
 	
 	public void setScore(int scoreIn) {
-		
 		score = scoreIn;
-		
 	}
 	
 	public void setHighScore(int scoreIn) {
-		
 		highScore = scoreIn;
-		
 	}
 	
 	public void updateScoreText() {
-		
 		scoreText.setText("Score: " + score);
-		
 	}
 	
 	public void updateHighScoreText() {
-		
 		highScoreText.setText("High Score: " + highScore);
-		
 	}
 	
 	//Enemy Methods///////////////////////////////////////////////////////
@@ -123,9 +98,7 @@ public class GameElements {
 	public void setEnemyStartPositions() {
 		
 		for(int i = 0; i < NUM_ENEMIES; i++) {
-			
 			spawnEnemy(enemies[i]);
-
 		}
 		
 	}
@@ -136,25 +109,17 @@ public class GameElements {
 		int enterSide = setRandomSpawnSide(enemy);
 		
 		if(enterSide == LEFT_SIDE) {
-			
 			enemy.setXSpeed(Math.abs(generateRandomSpeed()));
 			enemy.setYSpeed(generateRandomSpeed());
-			
 		}else if(enterSide == BOTTOM_SIDE){
-			
 			enemy.setXSpeed(generateRandomSpeed());
 			enemy.setYSpeed(-Math.abs(generateRandomSpeed()));
-			
 		}else if(enterSide == RIGHT_SIDE){
-			
 			enemy.setXSpeed(-Math.abs(generateRandomSpeed()));
 			enemy.setYSpeed(generateRandomSpeed());
-			
 		}else if(enterSide == TOP_SIDE){
-			
 			enemy.setXSpeed(generateRandomSpeed());
 			enemy.setYSpeed(Math.abs(generateRandomSpeed()));
-			
 		}
 		
 	}
@@ -170,21 +135,13 @@ public class GameElements {
 		
 	
 		if(randSide == LEFT_SIDE) {
-			
 			enemy.setLoc(-enemy.getSize(), randomHeight);
-			
 		}else if(randSide == BOTTOM_SIDE) {
-			
 			enemy.setLoc(randomWidth, CANVAS_HEIGHT);
-		
 		}else if(randSide == RIGHT_SIDE) {
-			
 			enemy.setLoc(CANVAS_WIDTH, randomHeight);
-		
 		}else if(randSide == TOP_SIDE) {
-			
 			enemy.setLoc(randomWidth, -enemy.getSize());
-			
 		}
 		
 		return randSide;
@@ -197,9 +154,7 @@ public class GameElements {
 		int negative = 1;
 		
 		if(Math.random() >= .5) {
-			
 			negative = -1;
-			
 		}
 		
 		//Speed range [-4, -2], [2, 4]
@@ -209,49 +164,34 @@ public class GameElements {
 	
 	//Update enemy positions
 	public void moveEnemies() {
-		
 		for(int i = 0; i < NUM_ENEMIES; i++) {
-			
 			enemies[i].move();
-			
 		}
-		
 	}
 	
 	//Once an enemy fully leaves the canvas, it is respawned.
 	public void checkEnemyOutOfBounds() {
 	
 		for(int i = 0; i < NUM_ENEMIES; i++) {
-			
 			if( (enemies[i].getXLoc() < (-enemies[i].getSize())) || 
 			    (enemies[i].getXLoc() > CANVAS_WIDTH) ||
 				(enemies[i].getYLoc() < (-enemies[i].getSize())) ||
 				(enemies[i].getYLoc() > CANVAS_HEIGHT)
-			  ) {
-				  
+			  ) {		  
 				spawnEnemy(enemies[i]);
-				
 			}
-			
 		}
 		
 	}
 	
 	//Returns whether or not a enemy/player collsion has occured yet wiht any enemies.
 	public boolean checkPlayerCollision(Player player) {
-		
 		boolean result = false;
-		
 		for(int i = 0; i < NUM_ENEMIES; i++) {
-			
 			if(enemies[i].checkCollision((Block)player)) {
-				
 				result = true;
-				
 			}
 		}
-		
 		return result;
-		
 	}
 }
