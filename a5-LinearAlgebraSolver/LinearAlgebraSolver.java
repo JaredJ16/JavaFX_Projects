@@ -226,16 +226,12 @@ public class LinearAlgebraSolver extends Application {
 
 		//setDimensionsClicked will change the MatrixInputField's ArrayList of TextFields if valid inputs are entered
 		EventHandler<MouseEvent> setDimensionsButtonClicked = new EventHandler<MouseEvent>() { 
-		
 			@Override 
 			public void handle(MouseEvent event) {	
-			
 				//errorText does not need to be modified whenever the setDimensionsButton is clicked because the matrix will always have a value becuase it has a staring value that can only be modified between 1-5
 				//setDimensionsAccordingToComboBoxes modifies the current matrixInputField GridPane so that it is the same dimensions as inputted
 				setDimensionsAccordingToComboBoxes(declareMatrixRoot, matrixInputField, gridPaneHolder, matrixGridPane, matrixRowSizeComboBox, matrixColSizeComboBox);
-				
 			} 
-
 		};
 		setDimensionsButton.addEventFilter(MouseEvent.MOUSE_CLICKED, setDimensionsButtonClicked); 
 
@@ -243,28 +239,19 @@ public class LinearAlgebraSolver extends Application {
 		//Upon clicking the "Set Matrix Variable" button, the selected variable from 
 		// the matrixVariableCollection will be declared if valid Doubles are entered
 		EventHandler<MouseEvent> setSetMatrixVariableButtonButtonClicked = new EventHandler<MouseEvent>() { 
-		
 			@Override 
 			public void handle(MouseEvent event) {	
-				
 				//get matrixVariableComboBox to check for a null entry, if any entries are null, spit out error message.
 				if(matrixVariableComboBox.getValue() != null){
-					
 					//close error message if it was there
 					setTextVisibilityAndContents(errorText, false, "Check the input selections");
-					
 					//declare a Matrix from MatrixVariableCollection
 					setVariableToCurrentTextFields(matrixVariableCollection, matrixInputField, matrixVariableComboBox, errorText);
-				
 				}else {
-					
 					//Error is presented until there is a different error or until the error is fixed(once user chooses valid inputs)
 					setTextVisibilityAndContents(errorText, true, "Check the input selections");
-					
 				}
-				
 			} 
-
 		};
 		setMatrixVariableButton.addEventFilter(MouseEvent.MOUSE_CLICKED, setSetMatrixVariableButtonButtonClicked); 		
 		
@@ -289,9 +276,7 @@ public class LinearAlgebraSolver extends Application {
 		
 		Button calculateDeterminantButton = new Button("Calculate Determinant");
 		
-		
 		ComboBox matrixVariableComboBox = generateMatrixVariableComboBox();
-		
 		
 		// The ComboBox/calculate button will be placed horizontally in the center
 		HBox matrixVariableSelectionArea = new HBox(5);
@@ -306,29 +291,21 @@ public class LinearAlgebraSolver extends Application {
 		inputAndMessageSection.setAlignment(Pos.CENTER);
 		
 		//When the button is clicked, the matrix will be verified to have a determinant,
-        // then the determinant is calculated and the outpuText is displayed.
+        	// then the determinant is calculated and the outpuText is displayed.
 		EventHandler<MouseEvent> setCalculateDeterminantButtonClicked = new EventHandler<MouseEvent>() { 
-		
 			@Override 
 			public void handle(MouseEvent event) {	
-			
 				calculateDeterminant(matrixVariableCollection, matrixVariableComboBox, outputText);
-				
 			} 
-
 		};
 		calculateDeterminantButton.addEventFilter(MouseEvent.MOUSE_CLICKED, setCalculateDeterminantButtonClicked); 
-		
-		
 		
 		determinantRoot.setAlignment(menuButton, Pos.TOP_LEFT);
 		determinantRoot.setAlignment(title, Pos.TOP_CENTER);
 		
 		determinantRoot.getChildren().addAll(background, title, menuButton, inputAndMessageSection);
 		
-		
 		addButtonToMenuSceneEventHandler(stage, menuScene, menuButton);
-		
 	}
 		
 	public static void setUpMultiplicationScene(Scene multiplicationScene, Scene menuScene, Stage stage, MatrixVariableCollection matrixVariableCollection) {
@@ -376,30 +353,22 @@ public class LinearAlgebraSolver extends Application {
 		multiplicationRoot.setAlignment(variableSelectionAndMessageOutput, Pos.BOTTOM_RIGHT);
 		multiplicationRoot.getChildren().addAll(background, title, menuButton, gridPaneHolder, variableSelectionAndMessageOutput);
 
-		
 		EventHandler<MouseEvent> setComputeButtonClicked = new EventHandler<MouseEvent>() { 
 		
 			@Override 
-			public void handle(MouseEvent event) {	
-			
+			public void handle(MouseEvent event) {				
 				String leftComboBoxContents = (String)leftMatrixVariableComboBox.getValue();
 				String rightComboBoxContents = (String)rightMatrixVariableComboBox.getValue();
-			
 				//if either of the comboBoxes are empty, send out error.
 				if( (leftMatrixVariableComboBox.getValue() == null) || (rightMatrixVariableComboBox.getValue() == null) ) {
-					
 					setTextVisibilityAndContents(outputText, true , "Select two matricies for computation");
-					
 				}else if(  ( matrixVariableCollection.getMatrix(leftComboBoxContents).getNumRows() == 0 ) || 
 				           ( matrixVariableCollection.getMatrix(rightComboBoxContents).getNumRows() == 0 ) ) {
 			
-			setTextVisibilityAndContents(outputText, true, "Initialize both of the matricies before computation");
-					
+					setTextVisibilityAndContents(outputText, true, "Initialize both of the matricies before computation");
 				}else{
-					
 					setTextVisibilityAndContents(outputText, false, null);
 					multiplyMatriciesAndSetOutputMatrixField(outputMatrixField, matrixVariableCollection, outputText, (String)leftMatrixVariableComboBox.getValue(), (String)rightMatrixVariableComboBox.getValue(), gridPaneHolder);
-					
 				}
 				
 			} 
@@ -421,45 +390,31 @@ public class LinearAlgebraSolver extends Application {
 		
 		//Switch scene to declareMatrixScene
 		EventHandler<MouseEvent> declareMatrixButtonClicked = new EventHandler<MouseEvent>() { 
-		
 			@Override 
 			public void handle(MouseEvent event) {
-				
 				stage.setScene(declareMatrixScene);
-	
 			} 
-			
 		};
 		declareMatrixButton.addEventFilter(MouseEvent.MOUSE_CLICKED, declareMatrixButtonClicked); 
 		
-		
 		//Switch scene to determinantScene
 		EventHandler<MouseEvent> determinantButtonClicked = new EventHandler<MouseEvent>() { 
-		
 			@Override 
 			public void handle(MouseEvent event) {
-				
 				stage.setScene(determinantScene);
-	
 			} 
-			
 		};
 		determinantButton.addEventFilter(MouseEvent.MOUSE_CLICKED, determinantButtonClicked); 
 		
 		
 		//Switch scene to multiplicationScene
 		EventHandler<MouseEvent> multiplicationButtonClicked = new EventHandler<MouseEvent>() { 
-		
 			@Override 
-			public void handle(MouseEvent event) {
-				
+			public void handle(MouseEvent event) {	
 				stage.setScene(multiplicationScene);
-	
 			} 
-			
 		};
-		multiplicationButton.addEventFilter(MouseEvent.MOUSE_CLICKED, multiplicationButtonClicked); 		
-		
+		multiplicationButton.addEventFilter(MouseEvent.MOUSE_CLICKED, multiplicationButtonClicked);
 	}	
 	
 	
@@ -481,9 +436,7 @@ public class LinearAlgebraSolver extends Application {
 		selectedMatrix.setValuesMatrixOfSize(matrixInputField.getNumRows(), matrixInputField.getNumCols());
 			
 		for(int r = 0; r < selectedMatrix.getNumRows(); r++) {
-				
 			for(int c = 0; c < selectedMatrix.getNumCols(); c++) {
-				
 				//Excpetion handling for string to Double formatting
 				try
 				{
@@ -495,36 +448,26 @@ public class LinearAlgebraSolver extends Application {
 					//Attempt to convert a string to a Double
 					currentTextFieldString = matrixInputField.getTextFieldsMatrix().get(r).get(c).getCharacters().toString();
 					valueFromString = Double.parseDouble(currentTextFieldString);
-				
 				}
 				catch(NumberFormatException e)
 				{
-
 					//String cannot be converted to a valid Double, so error is displayed and the determinant will not be calculated
 					setTextVisibilityAndContents(errorText, true, "Incorrect numerical input");
 					onlyValidInputs = false;
 					break;
-				
 				}
-				
 			}
-				
 		}
 		
 		//loop through and add values of textfield to the selectedMatrix
 		if(onlyValidInputs) {
-			
 			for(int i = 0; i < selectedMatrix.getNumRows(); i++) {
-				
 				for(int j = 0; j < selectedMatrix.getNumCols(); j++) {
-			
 					currentTextFieldString = matrixInputField.getTextFieldsMatrix().get(i).get(j).getCharacters().toString();
 					valueFromString = Double.parseDouble(currentTextFieldString);
 					
 					selectedMatrix.getValuesMatrix().get(i).set(j, valueFromString);
-				
 				}
-			
 			}
 
 		}
@@ -532,14 +475,10 @@ public class LinearAlgebraSolver extends Application {
 		//will print out the current values of selectedMatrix
 		/*
 		for(int a = 0; a < selectedMatrix.getNumRows(); a++) {
-				
 			for(int b = 0; b < selectedMatrix.getNumCols(); b++) {
-					
 				System.out.print("" + selectedMatrix.getValuesMatrix().get(a).get(b) + " ");
-					
 			}
 			System.out.println();
-			
 		}
 		*/
 		
@@ -561,15 +500,11 @@ public class LinearAlgebraSolver extends Application {
 		
 		// null entries mean that the num rows/cols will stay what they were
 		if(inputNumRows == null) {
-			
 			inputNumRows = currentNumRows;
-			
 		}
 		
 		if(inputNumCols == null) {
-			
 			inputNumCols = currentNumCols;	
-			
 		}
 		
 		//Set size, style the matrixGridPane, and update the matrixGridPane
@@ -591,32 +526,21 @@ public class LinearAlgebraSolver extends Application {
 		
 		// Attempt to assign the selectedMatrix and check for a null pointer
 		try {
-			
 			selectedMatrix = matrixVariableCollection.getMatrix((String)matrixVariableComboBox.getValue());
-		
 		}catch(NullPointerException e) {
-			
 			nullMatrixInputted = true;
-			
 		}
 		
 		//Error conditions lead to an error outputText and
 		// the correct conditions lead to the determinant being calculated and displayed.
 		if( (selectedMatrix.getNumRows() == 0) || (selectedMatrix.getNumCols() == 0) || (nullMatrixInputted == true)) {
-			
 			setTextVisibilityAndContents(outputText, true, "The selected matrix needs to be declared first");
-			
 		}else if(selectedMatrix.getNumRows() != selectedMatrix.getNumCols()) {
-			
 			setTextVisibilityAndContents(outputText, true, "The selected matrix must be square in order to calculate the determinant");
-			
 		}else if(selectedMatrix.getNumRows() == selectedMatrix.getNumCols()) {
-		
 			// Determinant is calculated and returned to be a part of the outputText.
 			setTextVisibilityAndContents(outputText, true, "The determinant is " + selectedMatrix.calculateDeterminant());
-		
 		}
-		
 	}	
 	
 
@@ -645,14 +569,10 @@ public class LinearAlgebraSolver extends Application {
 			outputMatrixField.setTextFieldsMatrixOfSize(resultantMatrix.getNumRows(), resultantMatrix.getNumCols());
 			
 			//loop through and set the TextFieldsMatrix to contain the values of the resultantMatrix
-			for(int r = 0; r < resultantMatrix.getNumRows(); r++) {
-				
+			for(int r = 0; r < resultantMatrix.getNumRows(); r++) {		
 				for(int c = 0; c < resultantMatrix.getNumCols(); c++) {
-					
 					outputMatrixField.getTextFieldsMatrix().get(r).set(c, new TextField(Double.toString(resultantMatrix.getValuesMatrix().get(r).get(c))));
-					
 				}
-				
 			}
 			
 			outputMatrixField.setTextFieldsMatrixOfSize(resultantMatrix.getNumRows(), resultantMatrix.getNumCols());	
@@ -664,13 +584,9 @@ public class LinearAlgebraSolver extends Application {
 			//Remove the old GridPane and insert the new GridPane
 			gridPaneHolder.getChildren().remove(0);
 			gridPaneHolder.getChildren().add(outputMatrixField.getMatrixGridPane());
-
-			
 		}else {
-			
 			//Executed when matrix multiplication is not possible			
 			setTextVisibilityAndContents(outputText, true, "Matrix multiplication is not possible(Check the dimensions of the matricies)");
-			
 		}
 		
 	}	
@@ -682,46 +598,36 @@ public class LinearAlgebraSolver extends Application {
 	
 	// Adds an event handler that sends the user to the menu when the button (parameter) is clicked
 	public static void addButtonToMenuSceneEventHandler(Stage stage, Scene menuScene, Button button) {
-
 		EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() { 
-		
 			@Override 
 			public void handle(MouseEvent event) {
-				
 				stage.setScene(menuScene);
-	
 			} 
-			
 		};
 		button.addEventFilter(MouseEvent.MOUSE_CLICKED, menuButtonClicked);
-
 	}	
 	
 	//Method to simplify modifying a Text's visibility and String
 	public static void setTextVisibilityAndContents(Text textIn, boolean visibility, String strIn) {
 		
 		textIn.setVisible(visibility);
-		
 		//null will be passed in when only visibility needs to be changed
 		if(strIn != null) {
 			textIn.setText(strIn);
 		}
-		
 	}
 	
 	//Creates a ComboBox specifically for chosing a matrix out of the matrixVariableCollection
 	public static ComboBox generateMatrixVariableComboBox() {
-		
 		ComboBox tempComboBox = new ComboBox();
 
-        tempComboBox.getItems().add("A");
-        tempComboBox.getItems().add("B");
-        tempComboBox.getItems().add("C");
-        tempComboBox.getItems().add("D");
-        tempComboBox.getItems().add("E"); 
+        	tempComboBox.getItems().add("A");
+        	tempComboBox.getItems().add("B");
+        	tempComboBox.getItems().add("C");
+        	tempComboBox.getItems().add("D");
+        	tempComboBox.getItems().add("E"); 
 		
 		return tempComboBox;
-		
 	}
 	
 }
