@@ -76,13 +76,6 @@ Possible Improvements:
 -Add a time delay between deaths
 -Add an easy, medium, and hard mode
 
-
-Random Notes:
-
--I realized half way through that the Block class could have been replaced
- by the Rectangle class already in the javaFX library.
--I am not quite sure if it is a good practice to make a class such as GameElements
- which just holds a collection objects, variables, and methods.
  
  
 Notes about Canvas class:
