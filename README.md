@@ -1,2 +1,4 @@
 # JavaFX_Projects
-A collection of small JavaFX programs I made.
+A collection of small JavaFX programs I made in order to get better at Java and learn a new library (JavaFX).
+
+The most involved projects are the canvas game and linear algebra solver. The canvas game is an arcade like game where I used the canvas element of JavaFX to make a 2d game. The player controls a block and must evade randomly spawned elements to collect points and get a high score. The linear algebra solver allowed the user to input matrices and do calculations like matrix multiplication and calculate determinants. Matrix multiplication was accomplished through the basic algorithm that someone would do by hand. I worte a version of the cofactor expansion algorithm for calculating the determinant: this is a recursive function that calculates any nxn matrix by only calculating 2x2 matrices and building the solutions from there.
