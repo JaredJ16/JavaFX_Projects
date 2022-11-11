@@ -158,26 +158,18 @@ public class CanvasGame extends Application {
 	public static void addEventHandlers(Scene scene, GameElements gElements) {
 			
 		EventHandler<KeyEvent> keyPressed = new EventHandler<KeyEvent>() { 
-		
 			@Override 
 			public void handle(KeyEvent event) {
-				
 				processPressedKeyEvents(event, gElements);
-				
 			} 
-			
 		};
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, keyPressed); 
 	
 		EventHandler<KeyEvent> keyReleased = new EventHandler<KeyEvent>() { 
-		
 			@Override 
 			public void handle(KeyEvent event) {
-				
 				processReleasedKeyEvents(event, gElements);
-				
 			} 
-			
 		};
 		scene.addEventFilter(KeyEvent.KEY_RELEASED, keyReleased);
 		
@@ -185,56 +177,36 @@ public class CanvasGame extends Application {
 	
 	//Each pressed key is set to true in keys array in Player Class
 	public static void processPressedKeyEvents(KeyEvent e, GameElements gElements) {
-		
 		if(e.getCode() == KeyCode.UP) {
-			
 			gElements.getPlayer().setKeyTrue(UP_KEY);
-			
 		}
 		if(e.getCode() == KeyCode.DOWN) {
-			
 			gElements.getPlayer().setKeyTrue(DOWN_KEY);
-			
 		}
 		
 		if(e.getCode() == KeyCode.RIGHT) {
 			gElements.getPlayer().setKeyTrue(RIGHT_KEY);
 		}
-		
 		if(e.getCode() == KeyCode.LEFT) {
-			
 			gElements.getPlayer().setKeyTrue(LEFT_KEY);
-			
 		}
-		
 	}
 	
 	//Each released key is set to false in keys array in Player Class
 	public static void processReleasedKeyEvents(KeyEvent e, GameElements gElements) {
 
 		if(e.getCode() == KeyCode.UP) {
-			
 			gElements.getPlayer().setKeyFalse(UP_KEY);
-			
 		}
 		if(e.getCode() == KeyCode.DOWN) {
-			
 			gElements.getPlayer().setKeyFalse(DOWN_KEY);
-			
 		}
-		
-		if(e.getCode() == KeyCode.RIGHT) {
-			
+		if(e.getCode() == KeyCode.RIGHT) {	
 			gElements.getPlayer().setKeyFalse(RIGHT_KEY);
-			
 		}
-		
-		if(e.getCode() == KeyCode.LEFT) {
-			
+		if(e.getCode() == KeyCode.LEFT) {	
 			gElements.getPlayer().setKeyFalse(LEFT_KEY);
-			
 		}
-		
 	}
 	
 	//Genral settings to that set the score to 0, update the score texts, set the player in the middle, 
@@ -259,36 +231,26 @@ public class CanvasGame extends Application {
 		//certain conditions can be checked and updated, then redraw everything, and repeat
 		
 		//Called 60 times a second
-		new AnimationTimer() {
-			
+		new AnimationTimer() {	
 			public void handle(long currentTime) {
-
 				//clear
 				clearCanvas(cGraphics);
-
 				//update positions/ look over logic
 				update(cGraphics, gElements);
-				
 				//draw
 				drawAll(cGraphics, gElements);
-				
 			}
-			
 		}.start();
-		
 	}
 	
 	//Paint canvas white so that the new drawings will go on a fresh state
 	public static void clearCanvas(GraphicsContext cGraphics) {
-		
 		cGraphics.setFill(Color.WHITE);
 		cGraphics.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-		
 	}
 	
 	//Update all game positions and statuses before redrawing
 	public static void update(GraphicsContext cGraphics, GameElements gElements) {
-		
 		//update all statuses
 		gElements.getPlayer().changePlayerSpeed();
 		gElements.getPlayer().move();
@@ -301,38 +263,26 @@ public class CanvasGame extends Application {
 		//CheckPointScored is processed before player Collision
 		managePointScored(gElements);
 		managePlayerCollision(gElements);
-		
 	}
 		
 	//When the player and point collide, the score is updated, and the point is newly placed.
 	public static void managePointScored(GameElements gElements) {
-		
 		if(gElements.getPoint().checkCollision((Block)gElements.getPlayer())) {
-			
 			gElements.setScore((gElements.getScore() + 1));
 			gElements.getPoint().setNewPlacement(gElements.getPlayer());
 			gElements.updateScoreText();
-			
 		}
-		
 	}
 	
 	//When a player/enemy collision occurs, the highscore is determined and the game is reset.
 	public static void managePlayerCollision(GameElements gElements) {
-		
 		if(gElements.checkPlayerCollision(gElements.getPlayer())) {
-			
 			if(gElements.getScore() > gElements.getHighScore()) {
-				
 				gElements.setHighScore(gElements.getScore());
 				gElements.updateHighScoreText();
-				
 			}
-
 			initStatuses(gElements);
-			
 		}
-		
 	}
 	
 	//The newly updates objects are now drawn back onto the canvas.
@@ -343,9 +293,7 @@ public class CanvasGame extends Application {
 		cGraphics.drawImage(gElements.getPoint().getImage(), gElements.getPoint().getXLoc(), gElements.getPoint().getYLoc());
 		
 		for(int i = 0; i < NUM_ENEMIES; i++) {
-			
 			cGraphics.drawImage(gElements.getEnemies()[i].getImage(), gElements.getEnemies()[i].getXLoc(), gElements.getEnemies()[i].getYLoc());
-			
 		}
 		
 	}
