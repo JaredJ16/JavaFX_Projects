@@ -17,31 +17,23 @@ public class Player extends Block
 	private boolean[] keys = {false, false, false, false};
 	
 	public Player(int xSpeedIn, int ySpeedIn, int sizeIn, Image imageIn) {
-	
 		super(xSpeedIn, ySpeedIn, sizeIn, imageIn);
-		
 	}
 	
 	//Getters/////////////////////////////////////////////////////////////
 	
-		public boolean getKey(int indexIn) {
-		
-		return keys[indexIn];
-		
+	public boolean getKey(int indexIn) {
+		return keys[indexIn];	
 	}
 
 	//Setters/////////////////////////////////////////////////////////////
 	
 	public void setKeyTrue(int indexIn) {
-		
 		keys[indexIn] = true;
-		
 	}
 	
 	public void setKeyFalse(int indexIn) {
-		
 		keys[indexIn] = false;
-		
 	}
 	
 	//General Methods/////////////////////////////////////////////////////
@@ -51,42 +43,26 @@ public class Player extends Block
 	public void changePlayerSpeed() {
 
 		if(getKey(UP_KEY) && getKey(DOWN_KEY)) {
-			
 			setYSpeed(0);			
-		
 		}else if(getKey(UP_KEY)) {
-		
 			setYSpeed(-PLAYER_SPEED);
-
 		}else if(getKey(DOWN_KEY)) {
-			
 			setYSpeed(PLAYER_SPEED);
-			
 		}
 		
 		if(getKey(RIGHT_KEY) && getKey(LEFT_KEY)) {
-			
 			setXSpeed(0);
-			
 		}else if(getKey(RIGHT_KEY)) {
-			
 			setXSpeed(PLAYER_SPEED);
-			
 		}else if(getKey(LEFT_KEY)) {
-			
 			setXSpeed(-PLAYER_SPEED);
-			
 		}
 		
 		if(!getKey(UP_KEY) && !getKey(DOWN_KEY)) {
-			
 			setYSpeed(0);
-			
 		}
 		if(!getKey(RIGHT_KEY) && !getKey(LEFT_KEY)) {
-			
 			setXSpeed(0);
-			
 		}
 		
 	}
@@ -96,30 +72,22 @@ public class Player extends Block
 		
 		//left
 		if(getXLoc() < 0) {
-			
 			setLoc(0, getYLoc());
-			
 		}
 		
 		//right
 		if(getXLoc() > (CANVAS_WIDTH - getSize())) {
-			
 			setLoc((CANVAS_WIDTH - getSize()), getYLoc());
-			
 		}
 		
 		//top
 		if(getYLoc() < 0) {
-			
 			setLoc(getXLoc(), 0);
-			
 		}
 		
 		//bottom
 		if(getYLoc() > (CANVAS_HEIGHT - getSize())) {
-			
 			setLoc(getXLoc(), (CANVAS_HEIGHT - getSize()));
-			
 		}		
 		
 	}
