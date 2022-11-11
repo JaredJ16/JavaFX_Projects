@@ -12,69 +12,51 @@ public class Block{
 	private Image image;
 	
 	public Block(int xSpeedIn, int ySpeedIn, int sizeIn, Image imageIn) {
-	
 		xLoc = 0;
 		yLoc = 0;
 		xSpeed = xSpeedIn;
 		ySpeed = ySpeedIn;
 		size = sizeIn;
 		image = imageIn;
-		
 	}
 	
 	//Getters/////////////////////////////////////////////////////////////
 
-	public int getXLoc() {
-		
+	public int getXLoc() {	
 		return xLoc;
-		
 	}
 	
 	public int getYLoc() {
-		
 		return yLoc;
-		
 	}
 	
 	public int getSize() {
-		
 		return size;
-		
 	}	
 	
 	public Image getImage() {
-		
 		return image;
-		
 	}
 	
 	//Setters/////////////////////////////////////////////////////////////
 	
 	public void setXSpeed(int xSpeedIn) {
-		
 		xSpeed = xSpeedIn;
-		
 	}
 	
 	public void setYSpeed(int ySpeedIn) {
-		
 		ySpeed = ySpeedIn;
-		
 	}
 	
 	public void setLoc(int xIn, int yIn) {
-		
 		xLoc = xIn;
 		yLoc = yIn;
-		
 	}
 
 	//General Methods/////////////////////////////////////////////////////
 	
 	public void move() {
-		
 		setLoc( (xLoc + xSpeed), (yLoc + ySpeed) );
-		
 	}
 	
 	//Returns true if "this" and blockIn are overlapping
@@ -89,10 +71,8 @@ public class Block{
 				( ( (getYLoc() + getSize()) < blockIn.getYLoc() ) || (getYLoc() > (blockIn.getYLoc() + blockIn.getSize()) )  )
 			)
 			
-		  ) {
-			  
+		  ) { 
 			result = true;
-			
 		}
 		
 		return result;
